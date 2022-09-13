@@ -3,10 +3,5 @@ import { galleryItems } from './gallery-items.js';
 
 console.log(galleryItems);
 
-import { basicLightbox } from '../dist/basicLightbox.min.js';
-
-const instance = basicLightbox.create(`
-    <img src="assets/images/image.png" width="800" height="600">
-`)
-
-instance.show()
+const basicLightbox = require('basiclightbox')
+import * as basicLightbox from 'basiclightbox'
