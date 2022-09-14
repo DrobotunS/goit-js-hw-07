@@ -5,8 +5,9 @@ const divGalleryRef = document.querySelector('.gallery');
 const galleryImage = createGalleryImage(galleryItems);
 divGalleryRef.insertAdjacentHTML('beforeend', galleryImage);
 divGalleryRef.addEventListener('click', onGalleryClick);
+
 function createGalleryImage(galleryItems) {
-    return galleryItems.map(({preview, original, description}) => {
+    return galleryItems.map(({ preview, original, description }) => {
         return `
         <div class="gallery__item">
         <a class="gallery__link" href="${original}">
@@ -20,9 +21,8 @@ function createGalleryImage(galleryItems) {
       </div>
       `;
     }).join('');
-    return galleryImages;
 };
-console.log(onGalleryClick);
+
 function onGalleryClick (evt) {
     evt.preventDefault();
 console.log(evt.target)
