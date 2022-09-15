@@ -1,6 +1,7 @@
 import { galleryItems } from './gallery-items.js';
 // Change code below this line
 console.log(galleryItems);
+
 const divGalleryRef = document.querySelector('.gallery');
 const galleryImage = createGalleryImage(galleryItems);
 divGalleryRef.insertAdjacentHTML('beforeend', galleryImage);
@@ -20,14 +21,31 @@ function createGalleryImage(galleryItems) {
       </div>
       `;
     }).join('');
-    return galleryImages;
+    
 };
-console.log(onGalleryClick);
+
 function onGalleryClick (evt) {
     evt.preventDefault();
-console.log(evt.target)
+const instance = basicLightbox.create(`
+    <img src="${evt.target.dataset.source}" data-source="large-image.jpg" width="800" height="600">
+`, {
+  onShow: (instance) => {
+    document.onkeydown = function(evt) {
+      let isEscape = false;
+      if ( "key", evt ) {
+        isEscape = ( evt.key === "Escape" || evt.key === "Esc" );
+      } else {
+        isEscape = ( evt.key === 27 );
+      }
+      if ( isEscape ) {
+        instance.close();
+      }
+    };
+  },
+});
+instance.show()
 const isGalleryImageEl = evt.target.classList.contains('gallery__image');
 if (!isGalleryImageEl) {
     return;
 }
-}
+};
