@@ -33,3 +33,5 @@ if (!isGalleryImageEl) {
     return;
 }
 };
+
+const simple = SimpleLightbox('.gallery', { captionDelay: 250, captionsData: 'alt' });
