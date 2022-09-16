@@ -9,20 +9,8 @@ divGalleryRef.insertAdjacentHTML('beforeend', galleryImage);
 divGalleryRef.addEventListener('click', onGalleryClick);
 function createGalleryImage(galleryItems) {
     return galleryItems.map(({preview, original, description}) => {
-        return `
-        <div class="gallery__item">
-        <a class="gallery__link" href="${original}">
-          <img
-            class="gallery__image"
-            src="${preview}"
-            data-source="${original}"
-            alt="${description}"
-          />
-        </a>
-      </div>
-      `;
-    }).join('');
-    
+        return `<a class="gallery__item" href="${original}"><img class="gallery__image" src="${preview}" alt="${description}"/></a>`;
+    }).join(''); 
 };
 
 function onGalleryClick (evt) {
@@ -34,4 +22,4 @@ if (!isGalleryImageEl) {
 }
 };
 
-const simple = SimpleLightbox('.gallery', { captionDelay: 250, captionsData: 'alt' });
+const lightbox = new SimpleLightbox('.gallery a', {captions: true, captionDelay: 250, captionsData: 'alt' });
