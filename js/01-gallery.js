@@ -24,28 +24,26 @@ function createGalleryImage(galleryItems) {
     
 };
 
-function onGalleryClick (evt) {
+function onGalleryClick(evt) {
+  const isGalleryImageEl = evt.target.classList.contains('gallery__image');
+if (!isGalleryImageEl) {
+    return;
+  };
     evt.preventDefault();
 const instance = basicLightbox.create(`
     <img src="${evt.target.dataset.source}" data-source="large-image.jpg" width="800" height="600">
 `, {
   onShow: (instance) => {
-    document.onkeydown = function(evt) {
-      let isEscape = false;
-      if ( "key", evt ) {
-        isEscape = ( evt.key === "Escape" || evt.key === "Esc" );
-      } else {
-        isEscape = ( evt.key === 27 );
-      }
-      if ( isEscape ) {
+    document.addEventListener('keydown', function (evt) {
+      if (evt.key === "Escape") {
         instance.close();
       }
-    };
+    });
   },
 });
 instance.show()
-const isGalleryImageEl = evt.target.classList.contains('gallery__image');
-if (!isGalleryImageEl) {
-    return;
-}
 };
+
+
+// Зробив рефакторінг коду, але не так як Ви говорили в відео доопрацюванні,
+//  тому що instance знаходиться іншій області видимості, буду вдячний якщо покащете як правильно.
